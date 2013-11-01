@@ -33,8 +33,12 @@
           </ul>
 
           <div class="navbar-right">
-            <ul class="nav navbar-nav">
+            <ul class="nav navbar-nav loggedout">
               <li><a href="/login">Log in</a></li>
+            </ul>
+            <ul class="nav navbar-nav loggedin">
+              <li><a href="/profile">Hello <span id="username"></span></a></li>
+              <li><a id="logout">Log out</a></li>
             </ul>
           </div>
 
@@ -54,8 +58,22 @@
     <script>
       percent.app.key('TESTAPP:C7tLp/flbg41M5iyC6Tb02K8yR09zBb266KtiIyVkLs=');
 
-      percent.user.isLoggedIn(function(err) {
+      $('#logout').click(function() {
+        percent.user.logout(function() {
+          $('.loggedin').hide();
+          $('.loggedout').show();
+        });
+      })
 
+      percent.user.isLoggedIn(function(err, user) {
+        if (user) {
+          $('#username').text(user.name || user.email);
+          $('.loggedin').show();
+          $('.loggedout').hide();
+        } else {
+          $('.loggedin').hide();
+          $('.loggedout').show();
+        }
       });
     </script>
   </body>
