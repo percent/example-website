@@ -33,12 +33,12 @@
           </ul>
 
           <div class="navbar-right">
-            <ul class="nav navbar-nav loggedout">
+            <ul class="nav navbar-nav" data-prcnt-show-if-no-user>
               <li><a href="/login">Log in</a></li>
             </ul>
-            <ul class="nav navbar-nav loggedin">
-              <li><a href="/profile">Hello <span id="username"></span></a></li>
-              <li><a id="logout">Log out</a></li>
+            <ul class="nav navbar-nav" data-prcnt-show-if-user>
+              <li><a href="/profile">Hello <span data-prcnt-user-prop="email"></span> !</a></li>
+              <li><a href="#" data-prcnt-sign-out>Sign out</a></li>
             </ul>
           </div>
 
@@ -54,20 +54,12 @@
 
     <script src="/js/vendor/jquery-1.10.2.min.js"></script>
     <script src="/js/vendor/bootstrap.min.js"></script>
-    <script src="//localhost:8080/js/percent.js"></script>
+    <script src="//localhost:8080/js/percent-ui.js"></script>
     <script>
       percent.app.key('TESTAPP:C7tLp/flbg41M5iyC6Tb02K8yR09zBb266KtiIyVkLs=');
 
-      $('#logout').click(function() {
-        percent.user.logout(function() {
-          $('.loggedin').hide();
-          $('.loggedout').show();
-        });
-      })
-
       percent.user.isLoggedIn(function(err, user) {
         if (user) {
-          $('#username').text(user.name || user.email);
           $('.loggedin').show();
           $('.loggedout').hide();
         } else {
