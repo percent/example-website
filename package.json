@@ -1,0 +1,16 @@
+{
+  "name": "percent-example-website",
+  "version": "0.0.1",
+  "description": "Percent Example website",
+  "scripts": {
+    "start": "harp server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/usepercent/example-website.git"
+  },
+  "author": "pgte",
+  "bugs": {
+    "url": "https://github.com/usepercent/example-website/issues"
+  }
+}
