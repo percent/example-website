@@ -20,16 +20,15 @@
     <div class="container">
 
 
-      <form id="loginform" class="form-signin">
+      <form class="form-signin" data-prcnt-signin-form action="/">
 
-        <div id="error" class="alert alert-danger" style="display:none">
-          <button type="button" class="close">&times;</button>
-          <p class="message"></p>
+        <div class="alert alert-danger" style="display:none" >
+          <p class="message" data-prcnt-error></p>
         </div>
 
         <h2 class="form-signin-heading">Please sign in</h2>
-        <input id="username" type="text" class="form-control" placeholder="Email address" required autofocus>
-        <input id="password" type="password" class="form-control" placeholder="Password" required>
+        <input name="username" type="text" class="form-control" placeholder="Email address" required autofocus>
+        <input name="password" type="password" class="form-control" placeholder="Password" required>
         <label class="checkbox">
           <input type="checkbox" value="remember-me"> Remember me
         </label>
@@ -41,25 +40,9 @@
 
     <script src="/js/vendor/jquery-1.10.2.min.js"></script>
     <script src="/js/vendor/bootstrap.min.js"></script>
-    <script src="//localhost:8080/js/percent.js"></script>
+    <script src="//localhost:8080/js/percent-ui.js"></script>
     <script>
       percent.app.key('TESTAPP:C7tLp/flbg41M5iyC6Tb02K8yR09zBb266KtiIyVkLs=');
-      $('#loginform').submit(function(ev) {
-        ev.preventDefault();
-
-        percent.user.login($('#username').val(), $('#password').val(), function(err) {
-          if (err) {
-            console.log('error:', err.message);
-            $('#error .message').text(err.message);
-            $('#error').fadeIn();
-          }
-          else window.location = '/';
-        });
-
-        $('#error .close').click(function() {
-          $('#error').fadeOut();
-        });
-      });
     </script>
   </body>
 </html>
